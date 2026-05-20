@@ -1,0 +1,126 @@
+   .terminal {
+      max-width: 900px;
+      margin: 100px auto;
+      padding: 24px;
+      color: rgba(0,0,0,0.85);
+    }
+
+    .panel {
+      margin-bottom: 16px;
+      padding: 16px;
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.6);
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .header-id {
+      font-size: 12px;
+      letter-spacing: 3px;
+      opacity: 0.6;
+    }
+
+    .title {
+      font-size: 28px;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: 0.7;
+    }
+
+    .status span {
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .cover-box {
+      height: 425px;
+      border-radius: 14px;
+      overflow: hidden;
+
+      background-size: cover;
+      background-position: center;
+
+      position: relative;
+    }
+
+    .cover-box::after {
+      content: "ARCHIVE VISUAL // STABLE IMAGE STREAM";
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .desc {
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.75;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .meta-item {
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.35);
+    }
+
+    .meta-label {
+      opacity: 0.5;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .meta-value {
+      margin-top: 4px;
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chapter {
+      padding: 12px;
+      border-radius: 10px;
+
+      background: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.5);
+
+      text-decoration: none;
+      color: inherit;
+
+      transition: 0.2s ease;
+    }
+
+    .chapter:hover {
+      transform: translateX(6px);
+      background: rgba(255,255,255,0.6);
+    }
+
+    .footer-note {
+      font-size: 11px;
+      opacity: 0.5;
+      text-align: center;
+      margin-top: 20px;
+    }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ARCHIVE://BOOK</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/book.css" />
+</head>
+
+<body>
+
+  <div class="bg"></div>
+
+  <header class="nav">
+
+    <a href="/index.html" class="logo">
+      <img src="/assets/logo.png" alt="logo" />
+      <span>Reverie Archive</span>
+    </a>
+
+    <nav class="links">
+      <a href="/index.html" class="nav-item">
+        <img src="/assets/icons/home.svg" class="icon" />
+        Home
+      </a>
+
+      <a href="/page/novel.html" class="nav-item">
+        <img src="/assets/icons/library.svg" class="icon" />
+        Library
+      </a>
+    </nav>
+
+  </header>
+
+  <!-- =========================
+       ARCHIVE TERMINAL
+  ========================= -->
+  <main class="terminal">
+
+    <!-- HEADER -->
+    <div class="panel">
+      <div class="header-id" id="bookCode">ARCHIVE NODE / ----</div>
+      <div class="title" id="bookTitle">LOADING...</div>
+      <div class="status">
+        STATUS: <span id="bookStatus">UNKNOWN</span> ｜ ACCESS: <span>GRANTED</span>
+      </div>
+    </div>
+
+    <!-- COVER -->
+    <div class="panel cover-box" id="bookCover"></div>
+
+    <!-- DESCRIPTION -->
+    <div class="panel">
+      <div class="desc" id="bookDesc">
+        Loading archive data...
+      </div>
+    </div>
+
+    <!-- META -->
+    <div class="panel">
+      <div class="meta-grid" id="bookMeta">
+
+        <!-- JS inject -->
+
+      </div>
+    </div>
+
+    <!-- CHAPTER LIST -->
+    <div class="panel">
+      <div class="chapter-list" id="chapterList">
+
+        <!-- JS inject -->
+
+      </div>
+    </div>
+
+    <div class="footer-note">
+      // archive node remains partially unstable — do not attempt full reconstruction //
+    </div>
+
+    <footer class="footer reveal">
+      <p>© 2026 Reverie Archive</p>
+      <p class="sub">Some stories remain unread, waiting in silence.</p>
+    </footer>
+
+  </main>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/init.js"></script>
+  <script src="/js/book.js"></script>
+
+</body>
+</html>

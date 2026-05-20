@@ -110,68 +110,86 @@
       typeWriter(pick());
     });
   }
+
   // =========================
-// 🚀 DYNAMIC LIBRARY SYSTEM
-// =========================
+  // 🚀 SUPABASE LIBRARY SYSTEM
+  // =========================
 
-async function loadLibrary() {
-  const grid = document.querySelector(".library-grid");
-  if (!grid) return;
+  async function loadLibrary() {
+    const grid = document.querySelector(".library-grid");
+    if (!grid) return;
 
-  try {
-    const res = await fetch("../data/library.json");
-    const data = await res.json();
+    const SUPABASE_URL = "https://jpgcsxgbtciermeahsjm.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpwZ2NzeGdidGNpZXJtZWFoc2ptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNzk2ODQsImV4cCI6MjA5NDg1NTY4NH0.GzekIuan0SljFjsZGJKr4II3r9xxHTk0srd5aV4_suA";
 
-    grid.innerHTML = "";
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/books?select=*`,
+        {
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`
+          }
+        }
+      );
 
-    data.books.forEach(book => {
-      const a = document.createElement("a");
-
-      a.className = "novel-card large";
-      a.href = book.link;
-
-      // meta data（以后可以做过滤/分类用）
-      a.dataset.id = book.id;
-      a.dataset.status = book.status;
-
-      // cover
-      const cover = document.createElement("div");
-      cover.className = "cover";
-
-      if (book.cover) {
-        cover.style.backgroundImage = `url('${book.cover}')`;
-        cover.style.backgroundSize = "cover";
-        cover.style.backgroundPosition = "center";
-        cover.dataset.cover = "img";
-      } else {
-        cover.dataset.cover = "N/A";
+      if (!res.ok) {
+        console.warn("Books load failed:", res.status);
+        return;
       }
 
-      // info
-      const info = document.createElement("div");
-      info.className = "info";
+      const data = await res.json();
 
-      const h3 = document.createElement("h3");
-      h3.textContent = book.title;
+      grid.innerHTML = "";
 
-      const p = document.createElement("p");
-      p.textContent = book.desc;
+      data.forEach(book => {
+        const a = document.createElement("a");
 
-      info.appendChild(h3);
-      info.appendChild(p);
+        a.className = "novel-card large";
+        a.href = `/page/book.html?id=${book.id}`;
 
-      a.appendChild(cover);
-      a.appendChild(info);
+        // meta data
+        a.dataset.id = book.id;
+        a.dataset.status = book.status || "active";
 
-      grid.appendChild(a);
-    });
+        // cover
+        const cover = document.createElement("div");
+        cover.className = "cover";
 
-  } catch (err) {
-    console.warn("Library load failed:", err);
+        if (book.cover) {
+          cover.style.backgroundImage = `url('${book.cover}')`;
+          cover.style.backgroundSize = "cover";
+          cover.style.backgroundPosition = "center";
+          cover.dataset.cover = "img";
+        } else {
+          cover.dataset.cover = "N/A";
+        }
+
+        // info
+        const info = document.createElement("div");
+        info.className = "info";
+
+        const h3 = document.createElement("h3");
+        h3.textContent = book.title;
+
+        const p = document.createElement("p");
+        p.textContent = book.description;
+
+        info.appendChild(h3);
+        info.appendChild(p);
+
+        a.appendChild(cover);
+        a.appendChild(info);
+
+        grid.appendChild(a);
+      });
+
+    } catch (err) {
+      console.warn("Library load failed:", err);
+    }
   }
-}
 
-// init
-window.addEventListener("DOMContentLoaded", loadLibrary);
+  // init
+  window.addEventListener("DOMContentLoaded", loadLibrary);
 
 })();

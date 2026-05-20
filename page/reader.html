@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TNE Reader</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/reader.css" />
+</head>
+
+<body>
+
+  <div class="bg"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+
+    <a href="/index.html" class="logo">
+      <img src="/assets/logo.png" alt="logo" />
+      <span>Reverie Archive</span>
+    </a>
+
+    <nav class="links">
+      <a href="/index.html" class="nav-item">
+        <img src="/assets/icons/home.svg" class="icon" />
+        Home
+      </a>
+
+      <a href="/page/novel.html" class="nav-item">
+        <img src="/assets/icons/library.svg" class="icon" />
+        Library
+      </a>
+    </nav>
+
+  </header>
+
+  <!-- =========================
+       READER
+  ========================= -->
+  <main class="reader">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <a class="btn" id="prevTop">← Prev</a>
+      <div class="chapter-title" id="chapterTitle">Loading...</div>
+      <a class="btn" id="nextTop">Next →</a>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content" id="contentBox">
+      Loading chapter...
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="bottombar">
+      <a class="btn" id="prevBottom">← Prev</a>
+      <a class="btn" id="backBtn">Back</a>
+      <a class="btn" id="nextBottom">Next →</a>
+    </div>
+
+    <footer class="footer reveal">
+      <p>© 2026 Reverie Archive</p>
+      <p class="sub">Some stories remain unread, waiting in silence.</p>
+    </footer>
+  </main>
+  <script src="/js/reader.js"></script>
+  <script src="/js/init.js"></script>
+  <script src="/js/script.js"></script>
+
+</body>
+</html>
