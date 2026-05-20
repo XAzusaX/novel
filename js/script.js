@@ -12,22 +12,21 @@ const quotes = [
   "Every page remembers you.",
   "Stories exist where memory fades.",
   "This archive breathes in silence.",
-  "Fragments remain even after deletion.",
-  "Not all entries were meant to be read.",
-  "A story is just memory refusing to disappear.",
-  "You were never supposed to find this page.",
-  "Lost data still dreams in loops.",
-  "Some records return without origin.",
-  "The archive does not forget, only hides.",
-  "What is missing still leaves traces.",
-  "Between pages, something still exists.",
-  "This system remembers what you erased.",
-  "Unread pages are still part of the story.",
-  "A quiet error in the structure of memory.",
-  "Nothing here is fully gone.",
-  "Even broken files continue to echo."
+  "A collection of moments that never disappeared.",
+  "Where memories are stored, not lost.",
+  "Pages turn even when no one is watching.",
+  "A place built from forgotten thoughts.",
+  "Stories wait patiently to be read.",
+  "This archive holds what time left behind.",
+  "Not everything written is meant to end.",
+  "Some pages only exist in quiet spaces.",
+  "A record of things that once mattered.",
+  "Each entry is a trace of presence.",
+  "You are standing inside preserved time.",
+  "Words here are kept, not forgotten.",
+  "A soft archive of unfinished thoughts.",
+  "This is where silence becomes structure."
 ];
-
   function pick() {
     return quotes[Math.floor(Math.random() * quotes.length)];
   }
