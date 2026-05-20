@@ -62,17 +62,21 @@ This project follows a simple versioning system:
 
 ## [0.3.0] - planned
 
-### Planned Features
-- Terminal-style authentication interface upgrade
-- Animated "system verification" loading sequence
-- Novel opening animation (file / archive unlock effect)
-- Multi-layer access system per novel entry
-- Enhanced reading interface (archive viewer mode)
+### Added
+- Novel system foundation (story entry structure)
+- Dedicated reading pages for individual novels
+- Archive-style navigation between stories
 
-### UI / UX Improvements
-- Deeper integration of archive/system narrative design
-- More immersive transitions between pages
-- Context-aware UI states based on user access
+### Planned Features
+- Interactive novel opening animation (file unlock effect)
+- Chapter-based reading system
+- Story metadata system (title, status, tags)
+- Improved reading UI (archive viewer mode)
+- Seamless transition between Library and Novel pages
+
+### UI / UX
+- Expand "Library" into a structured story index system
+- Introduce deeper archive hierarchy for stories
 
 ---
 
