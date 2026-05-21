@@ -5,6 +5,7 @@
   // =========================
   const SUPABASE_URL = "https://jpgcsxgbtciermeahsjm.supabase.co/";
   const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpwZ2NzeGdidGNpZXJtZWFoc2ptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNzk2ODQsImV4cCI6MjA5NDg1NTY4NH0.GzekIuan0SljFjsZGJKr4II3r9xxHTk0srd5aV4_suA";
+
   const headers = {
     apikey: SUPABASE_KEY,
     Authorization: `Bearer ${SUPABASE_KEY}`
@@ -15,6 +16,11 @@
   // =========================
   const urlParams = new URLSearchParams(window.location.search);
   const bookId = urlParams.get("id");
+
+  const isOATH = bookId === "oathborne";
+
+  // ⭐ NEW: tne corruption rule
+  const isTNE = bookId === "tne";
 
   // =========================
   // DOM CACHE
@@ -38,24 +44,18 @@
       { headers }
     );
 
-    if (!res.ok) {
-      throw new Error(res.status);
-    }
+    if (!res.ok) throw new Error(res.status);
 
     const data = await res.json();
     book = data?.[0];
 
   } catch (err) {
     console.error("BOOK LOAD FAILED", err);
-
     titleEl.textContent = "ARCHIVE ERROR";
     descEl.textContent = "DATABASE CORRUPTED OR UNREACHABLE";
     return;
   }
 
-  // =========================
-  // NOT FOUND
-  // =========================
   if (!book) {
     titleEl.textContent = "ARCHIVE NODE NOT FOUND";
     descEl.textContent = "The requested record does not exist.";
@@ -70,9 +70,6 @@
   statusEl.textContent = book.status || "UNKNOWN";
   descEl.textContent = book.description || "No description available.";
 
-  // =========================
-  // COVER
-  // =========================
   if (book["cover-p"]) {
     coverEl.style.backgroundImage = `url(${book["cover-p"]})`;
     coverEl.style.backgroundSize = "cover";
@@ -80,19 +77,31 @@
   }
 
   // =========================
-  // META SYSTEM (DYNAMIC)
+  // META SYSTEM (FIXED)
   // =========================
   metaEl.innerHTML = "";
+
+  const chapterCountDisplay = isOATH
+    ? "██"
+    : (book.chapters?.length || 0);
 
   const defaultMeta = [
     { label: "TYPE", value: "ARCHIVE ENTRY" },
     { label: "STATUS", value: book.status || "UNKNOWN" },
-    { label: "CHAPTERS", value: (book.chapters?.length || 0) },
+    { label: "CHAPTERS", value: chapterCountDisplay },
     { label: "SYNC", value: "SUPABASE NODE" }
   ];
 
   const metaData = Array.isArray(book.meta) && book.meta.length
-    ? book.meta
+    ? book.meta.map(m => {
+        if (m.label === "CHAPTERS" && isOATH) {
+          return { ...m, value: "██" };
+        }
+        if (m.label === "CHAPTERS" && !isOATH) {
+          return { ...m, value: book.chapters?.length || 0 };
+        }
+        return m;
+      })
     : defaultMeta;
 
   metaData.forEach(item => {
@@ -108,7 +117,7 @@
   });
 
   // =========================
-  // CHAPTER LIST
+  // CHAPTER LIST (WITH TNE LOCK)
   // =========================
   chapterEl.innerHTML = "";
 
@@ -119,10 +128,30 @@
     const a = document.createElement("a");
     a.className = "chapter";
 
-    // unified reader route
-    a.href = `/page/reader.html?book=${book.id}&chapter=${ch.id}`;
+    const indexLabel = isOATH
+      ? "██"
+      : String(index + 1).padStart(2, "0");
 
-    a.textContent = `[${String(index + 1).padStart(2, "0")}] ${ch.title}`;
+    // ⭐ NEW: corruption rule
+    const isLockedNode =
+      isTNE && (ch.id === "c33" || ch.title === "FILE CORRUPTED") ||
+      isOATH && (ch.id === "null" || ch.title === "NULL");
+
+    a.href = isLockedNode
+      ? "#"
+      : `/page/reader.html?book=${book.id}&chapter=${ch.id}`;
+
+    a.textContent = `[${indexLabel}] ${ch.title}`;
+
+    if (isLockedNode) {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+
+      a.style.cursor = "not-allowed";
+      a.style.opacity = "0.7";
+    }
 
     chapterEl.appendChild(a);
   });
