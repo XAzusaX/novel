@@ -1,7 +1,5 @@
 const input = document.getElementById("codeInput");
 const status = document.getElementById("status");
-
-const PASSWORD = "Azusa";
 let locked = false;
 
 // =========================
@@ -23,13 +21,14 @@ function setGranted() {
   sessionStorage.setItem("reverie_access", "true");
 
   setTimeout(() => {
-    window.location.href = "novel.html";
+    window.location.href = "lib.html";
   }, 600);
 }
 
 // =========================
 // INPUT HANDLER
 // =========================
+const key = "Azusa";
 input.addEventListener("keydown", (e) => {
   if (e.key !== "Enter") return;
 
@@ -39,7 +38,7 @@ input.addEventListener("keydown", (e) => {
   if (locked) return;
   locked = true;
 
-  if (value === PASSWORD) {
+  if (value === key) {
     setGranted();
   } else {
     setError();

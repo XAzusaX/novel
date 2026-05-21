@@ -18,8 +18,6 @@
   const bookId = urlParams.get("id");
 
   const isOATH = bookId === "oathborne";
-
-  // ⭐ NEW: tne corruption rule
   const isTNE = bookId === "tne";
 
   // =========================
@@ -70,6 +68,11 @@
   statusEl.textContent = book.status || "UNKNOWN";
   descEl.textContent = book.description || "No description available.";
 
+  // ⭐ NEW: DYNAMIC TAB TITLE
+  document.title = book.title || "UNKNOWN";
+  // =========================
+  // COVER
+  // =========================
   if (book["cover-p"]) {
     coverEl.style.backgroundImage = `url(${book["cover-p"]})`;
     coverEl.style.backgroundSize = "cover";
@@ -77,7 +80,7 @@
   }
 
   // =========================
-  // META SYSTEM (FIXED)
+  // META SYSTEM
   // =========================
   metaEl.innerHTML = "";
 
@@ -117,7 +120,7 @@
   });
 
   // =========================
-  // CHAPTER LIST (WITH TNE LOCK)
+  // CHAPTER LIST
   // =========================
   chapterEl.innerHTML = "";
 
@@ -132,10 +135,9 @@
       ? "██"
       : String(index + 1).padStart(2, "0");
 
-    // ⭐ NEW: corruption rule
     const isLockedNode =
-      isTNE && (ch.id === "c33" || ch.title === "FILE CORRUPTED") ||
-      isOATH && (ch.id === "null" || ch.title === "NULL");
+      (isTNE && (ch.id === "c33" || ch.title === "FILE CORRUPTED")) ||
+      (isOATH && (ch.id === "null" || ch.title === "NULL"));
 
     a.href = isLockedNode
       ? "#"
