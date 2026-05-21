@@ -505,3 +505,213 @@ a {
   letter-spacing: 0.3px;
   transition: opacity 0.3s ease;
 }
+
+/* =========================
+   NAV LAYOUT FIX (mobile correct positioning)
+========================= */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 72px;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(26px);
+
+  z-index: 100;
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================
+   MODERN HAMBURGER (soft pill style)
+========================= */
+
+.hamburger {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  transition: all 0.35s cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  position: relative;
+}
+
+/* hover soft bg */
+.hamburger:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* lines */
+.hamburger span {
+  height: 3px;
+  width: 22px;
+  background: #111;
+  border-radius: 999px;
+
+  margin: 0 auto;
+
+  transition: all 0.45s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+/* =========================
+   X ANIMATION (more natural)
+========================= */
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+  width: 20px;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+  width: 20px;
+}
+
+/* =========================
+   SIDE MENU (smooth + float-in feel)
+========================= */
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -280px;
+
+  width: 280px;
+  height: 100vh;
+
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(28px);
+
+  padding: 100px 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  transition:
+    right 0.55s cubic-bezier(0.2, 0.9, 0.2, 1),
+    transform 0.55s cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  transform: translateX(10px);
+
+  z-index: 90;
+}
+
+.side-menu.active {
+  right: 0;
+  transform: translateX(0);
+}
+
+/* menu items softer */
+.menu-item {
+  font-size: 17px;
+  opacity: 0.7;
+
+  transition: all 0.25s ease;
+}
+
+.menu-item:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+/* =========================
+   OVERLAY (more elegant fade)
+========================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.25);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.35s ease;
+
+  z-index: 80;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =========================
+   MOBILE RULES
+========================= */
+
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  font-size: 16px;
+  color: #111;
+
+  text-decoration: none;
+
+  opacity: 0.7;
+  transition: all 0.25s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.menu-item .icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+.menu-item span {
+  line-height: 1;
+}
+
+/* hover feel like iOS settings */
+.menu-item:hover {
+  opacity: 1;
+  background: rgba(0,0,0,0.05);
+  transform: translateX(6px);
+}
+
+/* press effect */
+.menu-item:active {
+  transform: scale(0.98) translateX(4px);
+}

@@ -20,28 +20,53 @@
   <!-- =========================
        NAVIGATION
   ========================= -->
-  <header class="nav">
+<header class="nav">
 
-    <a href="../index.html" class="logo">
-      <img src="../assets/logo.png" alt="logo" />
-      <span>Reverie Archive</span>
+  <!-- LEFT: logo -->
+  <a href="../index.html" class="logo">
+    <img src="../assets/logo.png" alt="logo" />
+    <span>Reverie Archive</span>
+  </a>
+
+  <!-- RIGHT: desktop links -->
+  <nav class="links">
+    <a href="../index.html" class="nav-item active">
+      <img src="../assets/icons/home.svg" class="icon" />
+      Home
     </a>
 
-    <nav class="links">
+    <a href="lib.html" class="nav-item">
+      <img src="../assets/icons/library.svg" class="icon" />
+      Library
+    </a>
+  </nav>
 
-      <a href="../index.html" class="nav-item">
-        <img src="../assets/icons/home.svg" class="icon" />
-        Home
-      </a>
+  <!-- MOBILE hamburger -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-      <a href="../page/lib.html" class="nav-item active">
-        <img src="../assets/icons/library.svg" class="icon" />
-        Library
-      </a>
+</header>
 
-    </nav>
+<!-- MOBILE overlay (一定要移出 header) -->
+<div class="overlay" id="overlay"></div>
 
-  </header>
+<!-- MOBILE side menu -->
+<div class="side-menu" id="sideMenu">
+
+  <a href="../index.html" class="menu-item">
+    <img src="../assets/icons/home.svg" class="icon" />
+    <span>Home</span>
+  </a>
+
+  <a href="lib.html" class="menu-item">
+    <img src="../assets/icons/library.svg" class="icon" />
+    <span>Library</span>
+  </a>
+
+</div>
 
   <!-- =========================
        MAIN
@@ -95,6 +120,7 @@
   <script src="../js/novels.js"></script>
   <script src="../js/novel.js"></script>
   <script src="../js/init.js"></script>
+  <script src="../js/script.js"></script>
 
 </body>
 </html>

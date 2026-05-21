@@ -51,6 +51,25 @@
   });
 })();
 
+const hamburger = document.getElementById("hamburger");
+const sideMenu = document.getElementById("sideMenu");
+const overlay = document.getElementById("overlay");
+const menuItems = document.querySelectorAll(".menu-item");
+
+function toggleMenu() {
+  hamburger.classList.toggle("active");
+  sideMenu.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+hamburger.addEventListener("click", toggleMenu);
+overlay.addEventListener("click", toggleMenu);
+
+menuItems.forEach(item => {
+  item.addEventListener("click", () => {
+    toggleMenu();
+  });
+});
 
 // =========================
 // ELEMENTS CACHE
@@ -195,4 +214,6 @@ window.addEventListener("DOMContentLoaded", () => {
     typeWriter();
     glitchLoop();
   });
+
+  
 })();
