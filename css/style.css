@@ -139,66 +139,6 @@ a {
 }
 
 /* =========================
-   LINKS
-========================= */
-.links {
-  display: flex;
-  gap: 6px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  padding: 10px 14px;
-  border-radius: 14px;
-
-  font-size: 14px;
-  color: #111;
-
-  opacity: 0.65;
-
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-.nav-item .icon {
-  width: 16px;
-  height: 16px;
-  opacity: 0.75;
-}
-
-.nav-item:hover {
-  opacity: 1;
-  background: rgba(0,0,0,0.05);
-}
-
-.nav-item:active {
-  transform: scale(0.98);
-}
-
-.nav-item.active {
-  opacity: 1;
-  background: rgba(0,0,0,0.06);
-}
-
-.nav-item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  opacity: 0;
-  transition: 0.25s;
-
-  background: radial-gradient(circle at center, rgba(120,180,255,0.18), transparent 70%);
-}
-
-.nav-item:hover::after {
-  opacity: 1;
-}
-
-/* =========================
    PAGE
 ========================= */
 .page {
